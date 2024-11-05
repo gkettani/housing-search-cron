@@ -9,6 +9,11 @@ compatibility_date = "2024-10-22"
 [triggers]
 crons = ["* * * * *"] # * * * * * = run every minute
 
+[[d1_databases]]
+binding = "DB"
+database_name = "prod-housing"
+database_id = "637c0aca-6957-49bc-811a-08b95ab9484c"
+
 # Workers Logs
 # Docs: https://developers.cloudflare.com/workers/observability/logs/workers-logs/
 # Configuration: https://developers.cloudflare.com/workers/observability/logs/workers-logs/#enable-workers-logs

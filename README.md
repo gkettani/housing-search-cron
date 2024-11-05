@@ -1,0 +1,2 @@
+# Housing search cron
+This experimental project automates periodic searches for housing listings and processes the results. This service is designed to scrape, fetch, or query housing data from online sources, process the information, and store it for later use or notification.
