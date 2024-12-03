@@ -15,17 +15,17 @@ export const AVAILABILITY = {
 
 export type Availability = ObjectValues<typeof AVAILABILITY>;
 
-export type Residence = {
-    link: string;
-    name: string;
-    location: string;
-};
+export type Link = {
+    url: string;
+    // Metadata describing the content of the link
+    meta: Record<string, string>
+}
 
 export type Accommodation = {
-    residence?: Residence;
     residence_name: string;
     type: string;
     rent: string;
     surface: string;
     availability: Availability;
+    url: string;
 };
