@@ -14,7 +14,7 @@ npx wrangler d1 execute prod-housing --local --command="SELECT * FROM links"
 ```
 
 Deploy a database
-````sh
+```sh
 npx wrangler d1 execute prod-d1-tutorial --remote --file=./schema.sql
 ```
 or
