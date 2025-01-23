@@ -1,6 +1,6 @@
-import type { NotificationStrategy } from './strategy';
-import type { Accommodation } from '../types';
 import logger from '../logger';
+import type { Accommodation } from '../types';
+import type { NotificationStrategy } from './strategy';
 
 export interface NotificationService {
 	addStrategy(strategy: NotificationStrategy): NotificationService;
@@ -15,9 +15,7 @@ export class CompositeNotificationService implements NotificationService {
 		return this;
 	}
 
-	async sendUpdateNotification(
-		accommodations: Accommodation[],
-	): Promise<void> {
+	async sendUpdateNotification(accommodations: Accommodation[]): Promise<void> {
 		// Filter enabled strategies
 		const enabledStrategies = this.strategies.filter((strategy) =>
 			strategy.isEnabled(),
@@ -39,16 +37,12 @@ export class CompositeNotificationService implements NotificationService {
 		for (const result of results) {
 			if (result.success) {
 				logger.info('Notification sent successfully', {
-					channel: result.channelId,
+					strategy: result.strategy,
 				});
 			} else {
-				logger.error(
-					'Failed to send notification',
-					new Error(result.error),
-					{
-						channel: result.channelId,
-					},
-				);
+				logger.error('Failed to send notification', new Error(result.error), {
+					strategy: result.strategy,
+				});
 			}
 		}
 	}
