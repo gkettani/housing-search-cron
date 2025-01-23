@@ -1,9 +1,9 @@
 import { Resend } from 'resend';
-import type { NotificationStrategy, NotificationResult } from './strategy';
 import type { Accommodation, Link } from '../types';
+import type { NotificationResult, NotificationStrategy } from './strategy';
 
 export class EmailNotificationStrategy implements NotificationStrategy {
-	channelId = 'email';
+	strategy = 'email';
 
 	constructor(
 		private env: {
@@ -27,9 +27,9 @@ export class EmailNotificationStrategy implements NotificationStrategy {
 	async sendNotification(
 		accommodations: Accommodation[],
 	): Promise<NotificationResult> {
-		const resend = new Resend(this.env.RESEND_API_KEY);
 		try {
-			const response = await resend.emails.send({
+			const resend = new Resend(this.env.RESEND_API_KEY);
+			await resend.emails.send({
 				from: `Housing <${this.env.EMAIL_FROM}>`,
 				to: [this.env.EMAIL_TO],
 				subject: '🔍 Housing search cron changes',
@@ -37,12 +37,12 @@ export class EmailNotificationStrategy implements NotificationStrategy {
 			});
 			return {
 				success: true,
-				channelId: this.channelId,
+				strategy: this.strategy,
 			};
 		} catch (error) {
 			return {
 				success: false,
-				channelId: this.channelId,
+				strategy: this.strategy,
 				error:
 					error instanceof Error
 						? error.message

@@ -4,7 +4,6 @@ import {
 	CompositeNotificationService,
 	DiscordNotificationStrategy,
 	EmailNotificationStrategy,
-	SlackNotificationStrategy,
 } from './notification';
 import { CompositeScraperService, FacHabitatScraperStrategy } from './scraper';
 import { ScrapingOrchestrator } from './scrapingOrchestrator';
@@ -26,7 +25,6 @@ export default {
 					RESEND_API_KEY: env.RESEND_KEY,
 				}),
 			)
-			.addStrategy(new SlackNotificationStrategy('', false))
 			.addStrategy(new DiscordNotificationStrategy('', false));
 
 		const orchestrator = new ScrapingOrchestrator(

@@ -2,7 +2,7 @@ import type { Accommodation } from '../types';
 
 export interface NotificationStrategy {
 	// Unique identifier for the notification channel
-	channelId: string;
+	strategy: string;
 
 	// Check if the strategy can send notifications
 	isEnabled(): boolean;
@@ -14,6 +14,6 @@ export interface NotificationStrategy {
 // Common Result Type
 export interface NotificationResult {
 	success: boolean;
-	channelId: string;
+	strategy: string;
 	error?: string;
 }
