@@ -68,5 +68,15 @@ class ScrapingError extends Error {
 	) {
 		super(message);
 		this.name = 'ScrapingError';
+
+		// Ensure context is included in stack trace and toString()
+		Object.defineProperty(this, 'stack', {
+			get() {
+				const contextString = this.context
+					? `\nContext: ${JSON.stringify(this.context, null, 2)}`
+					: '';
+				return `${super.stack}${contextString}`;
+			}
+		});
 	}
 }

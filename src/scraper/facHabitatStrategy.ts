@@ -1,4 +1,4 @@
-import { AVAILABILITY, type Link, type Availability } from '../types';
+import { AVAILABILITY, type Availability, type Link } from '../types';
 import type { ScraperStrategy, ScrapingResult } from './strategy';
 import * as util from './util';
 

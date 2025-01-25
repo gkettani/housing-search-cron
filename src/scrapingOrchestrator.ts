@@ -16,12 +16,8 @@ export class ScrapingOrchestrator {
 
 		const newAccommodations = [];
 		for (const link of linksToScrape) {
-			try {
-				const { data } = await this.scraperService.scrape(link);
-				newAccommodations.push(...data.accommodations);
-			} catch (error) {
-				logger.error(`Error while scraping ${JSON.stringify(link)}`, error);
-			}
+			const { data } = await this.scraperService.scrape(link);
+			newAccommodations.push(...data.accommodations);
 		}
 
 		const previousAccommodations = await this.db.fetchAccommodations();
