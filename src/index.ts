@@ -10,7 +10,6 @@ import { ScrapingOrchestrator } from './scrapingOrchestrator';
 
 export default {
 	async scheduled(_event, env, _ctx): Promise<void> {
-
 		const database = new Database(env.DB);
 
 		const compositeScraper = new CompositeScraperService().addStrategy(
@@ -25,7 +24,12 @@ export default {
 					RESEND_API_KEY: env.RESEND_KEY,
 				}),
 			)
-			.addStrategy(new DiscordNotificationStrategy('', false));
+			.addStrategy(
+				new DiscordNotificationStrategy(
+					env.DISCORD_TOKEN,
+					env.DISCORD_CHANNEL_ID,
+				),
+			);
 
 		const orchestrator = new ScrapingOrchestrator(
 			database,

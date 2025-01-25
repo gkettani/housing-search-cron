@@ -1,22 +1,24 @@
 {
-  "name": "housing-search-cron",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "deploy": "wrangler deploy",
-    "dev": "wrangler dev --test-scheduled",
-    "start": "wrangler dev --test-scheduled",
-    "cf-typegen": "wrangler types"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@cloudflare/workers-types": "^4.20241022.0",
-    "typescript": "^5.5.2",
-    "wrangler": "^3.60.3"
-  },
-  "dependencies": {
-    "pino": "^9.5.0",
-    "resend": "^4.0.1-alpha.0",
-    "zod": "^3.23.8"
-  }
+	"name": "housing-search-cron",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"deploy": "wrangler deploy",
+		"dev": "wrangler dev --test-scheduled",
+		"start": "wrangler dev --test-scheduled",
+		"cf-typegen": "wrangler types"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@cloudflare/workers-types": "^4.20241022.0",
+		"typescript": "^5.5.2",
+		"wrangler": "^3.60.3"
+	},
+	"dependencies": {
+		"@discordjs/rest": "^2.4.2",
+		"discord-api-types": "^0.37.117",
+		"pino": "^9.5.0",
+		"resend": "^4.0.1-alpha.0",
+		"zod": "^3.23.8"
+	}
 }

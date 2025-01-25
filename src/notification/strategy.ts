@@ -8,7 +8,9 @@ export interface NotificationStrategy {
 	isEnabled(): boolean;
 
 	// Send notification about link updates
-	sendNotification(accommodations: Accommodation[]): Promise<NotificationResult>;
+	sendNotification(
+		accommodations: Accommodation[],
+	): Promise<NotificationResult>;
 }
 
 // Common Result Type
