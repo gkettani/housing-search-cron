@@ -11,7 +11,7 @@ export class DiscordNotificationStrategy implements NotificationStrategy {
 		private token: string,
 		private channelId: string,
 		private enabled = true,
-	) { }
+	) {}
 
 	isEnabled(): boolean {
 		return this.enabled && !!this.token && !!this.channelId;
@@ -23,7 +23,7 @@ export class DiscordNotificationStrategy implements NotificationStrategy {
 		try {
 			const rest = new REST({ version: '10' }).setToken(this.token);
 			const messages = this.chunkMessages(
-				this.formatAccommodationsForDiscord(accommodations)
+				this.formatAccommodationsForDiscord(accommodations),
 			);
 
 			for (const message of messages) {
@@ -77,7 +77,10 @@ export class DiscordNotificationStrategy implements NotificationStrategy {
 		// Split content into chunks
 		let remainingContent = content;
 		while (remainingContent.length > 0) {
-			let chunk = remainingContent.slice(0, DiscordNotificationStrategy.MAX_MESSAGE_LENGTH);
+			let chunk = remainingContent.slice(
+				0,
+				DiscordNotificationStrategy.MAX_MESSAGE_LENGTH,
+			);
 
 			// Try to split at a newline to avoid cutting words mid-sentence
 			const lastNewlineIndex = chunk.lastIndexOf('\n');

@@ -76,7 +76,7 @@ class ScrapingError extends Error {
 					? `\nContext: ${JSON.stringify(this.context, null, 2)}`
 					: '';
 				return `${super.stack}${contextString}`;
-			}
+			},
 		});
 	}
 }
