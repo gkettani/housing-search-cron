@@ -31,6 +31,7 @@ export class ScrapingOrchestrator {
 		);
 
 		if (changes.length > 0) {
+			logger.info(changes, `Found ${changes.length} new changes`)
 			await this.db.updateAccommodations(changes);
 			await this.notificationService.sendUpdateNotification(changes);
 		}
