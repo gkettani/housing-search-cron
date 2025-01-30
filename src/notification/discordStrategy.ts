@@ -57,7 +57,7 @@ export class DiscordNotificationStrategy implements NotificationStrategy {
 			return `**${acc.residence_name}**  
 
 🏠 Type: ${acc.type}
-💵 Rent: $${acc.rent}
+💵 Rent: ${acc.rent}
 📐 Surface: ${acc.surface}
 📅 Availability: ${acc.availability}
 🔗 [More details](${acc.url})`;

@@ -1,4 +1,3 @@
-import logger from '../logger';
 import { AVAILABILITY, type Availability, type Link } from '../types';
 import type { ScraperStrategy, ScrapingResult } from './strategy';
 import * as util from './util';
@@ -34,13 +33,10 @@ export class FacHabitatScraperStrategy implements ScraperStrategy {
 
 			let availability: Availability;
 			if (availabilityText.startsWith('Aucune')) {
-				logger.info(`Accommodation ${residence_name} ${type} is not available anymore`);
 				availability = AVAILABILITY.NOT_AVAILABLE;
 			} else if (availabilityText.startsWith('Disponibilit')) {
-				logger.info(`Found an incoming availability for accommodation ${residence_name} ${type}`);
 				availability = AVAILABILITY.INCOMING;
 			} else {
-				logger.info(`Found a new availability for accommodation ${residence_name} ${type}`);
 				availability = AVAILABILITY.AVAILABLE;
 			}
 
