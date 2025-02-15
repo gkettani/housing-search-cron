@@ -1,3 +1,4 @@
+import { decode } from 'html-entities';
 import { AVAILABILITY, type Availability, type Link } from '../types';
 import type { ScraperStrategy, ScrapingResult } from './strategy';
 import * as util from './util';
@@ -29,15 +30,15 @@ export class FacHabitatScraperStrategy implements ScraperStrategy {
 			const type = formatted[i];
 			const rent = formatted[i + 1];
 			const surface = formatted[i + 2];
-			const availabilityText = formatted[i + 3];
+			const availabilityText = decode(formatted[i + 3]).toLowerCase().trim();
 
-			let availability: Availability;
-			if (availabilityText.startsWith('Aucune')) {
-				availability = AVAILABILITY.NOT_AVAILABLE;
-			} else if (availabilityText.startsWith('Disponibilit')) {
-				availability = AVAILABILITY.INCOMING;
-			} else {
+			let availability: Availability = AVAILABILITY.NOT_AVAILABLE;
+			if (availabilityText.startsWith('déposer une demande disponibilité immédiate')) {
+				availability = AVAILABILITY.IMMEDIATELY_AVAILABLE;
+			} else if (availabilityText.startsWith('déposer une demande')) {
 				availability = AVAILABILITY.AVAILABLE;
+			} else if (availabilityText.includes('disponibilité à venir')) {
+				availability = AVAILABILITY.INCOMING;
 			}
 
 			accommodations.push({
