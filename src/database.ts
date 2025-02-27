@@ -36,7 +36,7 @@ export class Database {
 
 	async updateAccommodations(accommodations: Accommodation[]): Promise<void> {
 		try {
-			for (const accommodation of accommodations) {
+			await Promise.all(accommodations.map(async (accommodation) => {
 				await this.db
 					.prepare(
 						`
@@ -54,7 +54,7 @@ export class Database {
 						accommodation.url,
 					)
 					.run();
-			}
+			}));
 		} catch (error) {
 			logger.error(error, 'Error while updating accommodations');
 			throw error;
